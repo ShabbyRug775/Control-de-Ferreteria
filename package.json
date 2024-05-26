@@ -1,0 +1,23 @@
+{
+  "name": "control-de-ferreteria",
+  "version": "1.0.0",
+  "description": "Control de inventarios para ferretería.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon SRC/Servidor.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.1"
+  }
+}
