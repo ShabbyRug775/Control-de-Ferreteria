@@ -5,25 +5,30 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 
 // Se llaman las rutas
-import indexRoutes from "./Rutas/index.js";
-//import usuariosRoutes from "./Rutas/usuarios.js";
+import usuariosRoutes from "./Rutas/usuarios.js";
+import articulosRoutes from "./Rutas/articulos.js";
 import { FRONTEND_URL } from "./Configuracion/configuracion.js";
 
+// Constante para llamar express
 const app = express();
 
-/* app.use(
-  cors({
-    credentials: true,
-    origin: FRONTEND_URL,
-  })
-); */
+app.use(
 
+    cors({
+      credentials: true,
+      origin: FRONTEND_URL,
+    })
+
+);
+
+// App ocupa las librerias necesarias
 app.use(morgan("dev"));
 app.use(express.json());
-//app.use(cookieParser());
+app.use(cookieParser());
 
-app.use("/api/auth", indexRoutes);
-//app.use("/api", usuariosRoutes);
+// Rutas para los usuarios y para los articulos
+app.use("/api/auth", usuariosRoutes);
+app.use("/api", articulosRoutes);
 
 /* if (process.env.NODE_ENV === "production") {
   const path = await import("path");
@@ -35,4 +40,5 @@ app.use("/api/auth", indexRoutes);
   });
 } */
 
+// Se exporta el app
 export default app;

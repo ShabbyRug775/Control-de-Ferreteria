@@ -1,15 +1,32 @@
 // Se importa libreria de express router
-import {Router} from 'express'
+import { Router } from 'express'
 
+// Se llaman los controladores desde usuario_controller
+import {
+
+    LogIn,
+    LogOut,
+    SignInUp,
+    verifyToken
+
+} from "../Controladores/usuario.controller.js";
+
+// Se importa el validador de esquema
+import { validacionSchema } from "../Middlewares/validador.middleware.js";
+// Se importa el esquema de iniciar sesion y registro de usuarios
+import { LogInSchema, SignInUpSchema } from "../Esquemas/usuario.schema.js";
+
+// Constante del router
 const router = Router()
 
-// Ruta de pagina principal //
-router.get('/index', (req, res) => res.render('index'))
-// Ruta de perfil de usuarios //
-router.get('/perfil_usuario', (req, res) => res.render('perfil_usuario'))
-// Ruta de todos los articulos //
-router.get('/articulos', (req, res) => res.render('articulos'))
-// Ruta de todos los articulos //
-router.get('/altas_articulo', (req, res) => res.render('altas_articulo'))
+// Ruta para Log-In //
+router.post("/LogIn", validacionSchema(LogInSchema), LogIn);
+// Ruta para Sign-In-Up //
+router.post("/SignInUp", validacionSchema(SignInUpSchema), SignInUp);
+// Ruta para verificar el token //
+router.get("/verificar", verifyToken);
+// Ruta para Log-Out //
+router.post("/LogOut", verifyToken, LogOut);
 
-export default router
+// Se exporta el router con las rutas
+export default router;

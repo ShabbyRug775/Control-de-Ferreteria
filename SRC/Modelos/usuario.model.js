@@ -1,27 +1,28 @@
 // libreria de mongoose
 import mongoose from "mongoose";
 
-// Esquema de articulos
-const articuloSchema = new mongoose.Schema(
+// Esquema de usuario
+const usuarioSchema = new mongoose.Schema(
     {
-        nombre_articulo: {
+        nombre_usuario: {
             type: String,
             required: true,
             trim: true
         },
-        codigo_barras_art: {
+        correo: {
             type: String,
             required: true,
             trim: true,
             unique: true
         },
-        descripcion_articulo: {
-            type: String,
+        telefono: {
+            type: Number,
             required: true,
             trim: true
         },
-        imagen_articulo: {
-            type: Image
+        password: {
+            type: String,
+            required: true
         }
     },
     {
@@ -29,4 +30,4 @@ const articuloSchema = new mongoose.Schema(
     }
 );
 
-export default mongoose.model('articulo', articuloSchema)
+export default mongoose.model('usuario', usuarioSchema)
