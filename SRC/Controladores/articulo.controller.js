@@ -2,7 +2,7 @@
 import articulo from "../Modelos/articulo.model.js";
 
 // Consultas de articulos
-export const consulArts = async (req, res) => {
+export const consulsArts = async (req, res) => {
 
     try {
 
@@ -24,14 +24,13 @@ export const altaArt = async (req, res) => {
     try {
 
         // Constante para guardar datos del articulo
-        const { nombre_articulo, codigo_barras_art, descripcion_articulo, imagen_articulo } = req.body;
+        const { nombre_articulo, codigo_barras_art, descripcion_articulo } = req.body;
 
         // Creación de nuevo articulo
         const nuevoArt = new articulo({
             nombre_articulo,
             codigo_barras_art,
             descripcion_articulo,
-            imagen_articulo,
             usuario: req.usuario.id
 
         });
@@ -72,18 +71,18 @@ export const bajaArt = async (req, res) => {
 };
 
 // Cambios de articulos
-export const actuArt = async (req, res) => {
+export const modArt = async (req, res) => {
 
     try {
 
         // Constante para actualizar el articulo
-        const { nombre_articulo, codigo_barras_art, descripcion_articulo, imagen_articulo } = req.body;
+        const { nombre_articulo, codigo_barras_art, descripcion_articulo } = req.body;
 
         // Busca y actualiza el articulo
         const artiMod = await Task.findOneAndUpdate(
 
             { _id: req.params.id },
-            { nombre_articulo, codigo_barras_art, descripcion_articulo, imagen_articulo },
+            { nombre_articulo, codigo_barras_art, descripcion_articulo },
             { new: true }
 
         );
@@ -100,7 +99,7 @@ export const actuArt = async (req, res) => {
 };
 
 // Consulta individual de articulo
-export const consulArtInd = async (req, res) => {
+export const consulArt = async (req, res) => {
 
     try {
 

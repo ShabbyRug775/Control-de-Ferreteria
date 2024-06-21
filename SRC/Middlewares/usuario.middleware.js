@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../Configuracion/configuracion.js";
 
 // Constante de usuario que verifica el token
-export const user = (req, res, next) => {
+export const usuario = (req, res, next) => {
 
     try {
         // Se verifica que el token se encuentre en las cookies

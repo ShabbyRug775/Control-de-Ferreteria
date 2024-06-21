@@ -19,9 +19,6 @@ const articuloSchema = new mongoose.Schema(
             type: String,
             required: true,
             trim: true
-        },
-        imagen_articulo: {
-            type: Image
         }
     },
     {

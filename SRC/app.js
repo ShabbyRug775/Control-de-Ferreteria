@@ -27,18 +27,18 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Rutas para los usuarios y para los articulos
-app.use("/api/auth", usuariosRoutes);
-app.use("/api", articulosRoutes);
+app.use("/Api/usuario", usuariosRoutes);
+app.use("/Api", articulosRoutes);
 
-/* if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "produccion") {
   const path = await import("path");
-  app.use(express.static("client/dist"));
+  app.use(express.static("Cliente/dist"));
 
   app.get("*", (req, res) => {
-    console.log(path.resolve("client", "dist", "index.html") );
-    res.sendFile(path.resolve("client", "dist", "index.html"));
+    console.log(path.resolve("Cliente", "dist", "index.html") );
+    res.sendFile(path.resolve("Cliente", "dist", "index.html"));
   });
-} */
+}
 
 // Se exporta el app
 export default app;

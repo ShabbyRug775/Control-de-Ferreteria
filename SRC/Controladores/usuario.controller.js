@@ -76,7 +76,7 @@ export const SignInUp = async (req, res) => {
     try {
 
         // Constante para guardar datos del usuario
-        const { nombre_usuario, correo, telefono, password } = req.body;
+        const { nombre_usuario, correo, password } = req.body;
 
         // Se busca si hay un usuario con un correo ya usado
         const usarioEncontrado = await usuario.findOne({ correo });
@@ -97,7 +97,6 @@ export const SignInUp = async (req, res) => {
 
             nombre_usuario,
             correo,
-            telefono,
             password: passwordHash,
 
         });
@@ -127,7 +126,6 @@ export const SignInUp = async (req, res) => {
             id: usuarioGuardado._id,
             nombre_usuario: usuarioGuardado.nombre_usuario,
             correo: usuarioGuardado.correo,
-            telefono: usuarioGuardado.telefono
 
         });
 

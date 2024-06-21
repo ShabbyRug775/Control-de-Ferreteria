@@ -13,9 +13,6 @@ export const SignInUpSchema = z.object({
         .email({
             message: "Correo no valido",
         }),
-    telefono: z.number({
-        required_error: "Se requiere un telefono",
-    }),
     password: z.string({
         required_error: "Se requiere una contraseña",
     }).min(6, {
