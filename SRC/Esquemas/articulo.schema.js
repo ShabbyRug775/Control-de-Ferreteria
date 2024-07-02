@@ -10,8 +10,8 @@ export const crearArticuloSchema = z.object({
     codigo_barras_art: z.string({
         required_error: "Se requiere un codigo de barras",
     }),
-    descripcion_articulo: z.string({
-        required_error: "Se requiere una descripcion",
-    })
+    descripcion_articulo: z.string().optional(),
+    
+    date: z.string().datetime().optional(),
 
 });

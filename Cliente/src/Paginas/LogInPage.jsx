@@ -30,7 +30,7 @@ export function LogInPage() {
     // Si se corroboran los datos lo manda a articulos
     useEffect(() => {
       if (isAuthenticated) {
-        navigate("/ConsulArticulos");
+        navigate("/articulos");
       }
     }, [isAuthenticated]);
 
@@ -45,7 +45,7 @@ export function LogInPage() {
                   <Message message={error} key={i} />
                 ))}
 
-                <h1 className="text-2xl font-bold">Login</h1>
+                <h1 className="text-2xl font-bold"> Inicio de Sesión </h1>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
 

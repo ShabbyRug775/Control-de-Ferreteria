@@ -30,7 +30,7 @@ function SignInUpPage() {
 
     // Si se corroboran los datos lo manda a articulos
     useEffect(() => {
-        if (isAuthenticated) navigate("/ConsulArticulos");
+        if (isAuthenticated) navigate("/articulos");
     }, [isAuthenticated]);
 
     // Retorna el HTML de la página

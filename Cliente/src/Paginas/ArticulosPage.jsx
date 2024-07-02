@@ -1,11 +1,11 @@
 // Se importan librerias de react y contexto de articulo
 import { useEffect } from "react";
 import { usarArticulo } from "../Contexto/articuloContexto";
-import { ArticuloCard } from "../Componentes/articulos/articulosCard";
+import { ArticuloCard } from "../Componentes/articulos/ArticuloCard";
 import { ImFileEmpty } from "react-icons/im";
 
-export function ConsulArticulos() {
-  const { articulo, consulsArts } = usarArticulo();
+export function ArticulosPage() {
+  const { articulos, consulsArts } = usarArticulo();
 
   useEffect(() => {
     consulsArts();
@@ -13,7 +13,7 @@ export function ConsulArticulos() {
 
   return (
     <>
-      {articulo.length === 0 && (
+      {articulos.length === 0 && (
         <div className="flex justify-center items-center p-10">
           <div>
             <ImFileEmpty className="text-6xl text-gray-400 m-auto my-2" />
@@ -25,7 +25,7 @@ export function ConsulArticulos() {
       )}
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
-        {articulo.map((articulo) => (
+        {articulos.map((articulo) => (
           <ArticuloCard articulo={articulo} key={articulo._id} />
         ))}
       </div>

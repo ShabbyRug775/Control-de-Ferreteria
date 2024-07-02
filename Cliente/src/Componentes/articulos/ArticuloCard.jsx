@@ -11,7 +11,7 @@ export function ArticuloCard({ articulo }) {
         <h1 className="text-2xl font-bold">{articulo.nombre_articulo}</h1>
         <div className="flex gap-x-2 items-center">
           <Button onClick={() => bajaArt(articulo._id)}> Borrar </Button>
-          <ButtonLink to={`/tasks/${articulo._id}`}> Editar </ButtonLink>
+          <ButtonLink to={`/articulos/${articulo._id}`}> Editar </ButtonLink>
         </div>
       </header>
       <p className="text-slate-300">{articulo.codigo_barras_art}</p>

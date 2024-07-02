@@ -18,7 +18,7 @@ import { LogInPage } from "./Paginas/LogInPage";
 // Ruta para los articulos
 import { ArticulosForm } from "./Paginas/ArticulosForm";
 // Ruta para las consultas
-import { ConsulArticulos } from "./Paginas/ConsulArticulos";
+import { ArticulosPage } from "./Paginas/ArticulosPage";
 
 // Funcion App
 function App() {
@@ -32,7 +32,7 @@ function App() {
                 <BrowserRouter>
 
                     <main className="container content-container mx-auto px-10 md:px-0">
-                      
+
                         <Navbar />
                         <Routes>
 
@@ -40,8 +40,10 @@ function App() {
                             <Route path="/LogInPage" element={<LogInPage />} />
                             <Route path="/SignInUpPage" element={<SignInUpPage />} />
                             <Route element={<RutaProtegida />}>
-                              <Route path="/ConsulArticulos" element={<ConsulArticulos />} />
-                              <Route path="/ArticulosForm" element={<ArticulosForm />} />
+                                <Route path="/articulos" element={<ArticulosPage />} />
+                                <Route path="/ArticulosForm" element={<ArticulosForm />} />
+                                <Route path="/articulos/:id" element={<ArticulosForm />} />
+                                <Route path="/perfil" element={<h1>Profile</h1>} />
                             </Route>
 
                         </Routes>

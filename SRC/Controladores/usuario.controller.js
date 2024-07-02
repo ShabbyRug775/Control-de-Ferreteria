@@ -1,7 +1,7 @@
 // Se importan las librerias
 import usuario from "../Modelos/usuario.model.js";
-import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 import { TOKEN_SECRET } from "../Configuracion/configuracion.js";
 import { createAccessToken } from "../Libs/jwt.js";
 
@@ -46,7 +46,6 @@ export const LogIn = async (req, res) => {
         // Se manda el token para revisión
         res.cookie("token", token, {
 
-            httpOnly: process.env.NODE_ENV !== "development",
             secure: true,
             sameSite: "none"
 
@@ -114,7 +113,6 @@ export const SignInUp = async (req, res) => {
         // Se manda el token para revisión
         res.cookie("token", token, {
 
-            httpOnly: process.env.NODE_ENV !== "development",
             secure: true,
             sameSite: "none"
 

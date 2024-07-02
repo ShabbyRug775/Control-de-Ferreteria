@@ -1,16 +1,16 @@
 // Rutas de react, api y cookies
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
-import { LogInRequest, SigInUpRequest, verificarTokenRequest } from "../Api/usuario";
+import { LogInRequest, SigInUpRequest, verifyTokenRequest } from "../Api/usuario";
 import Cookies from "js-cookie";
 
 // Se crea un contexto de react
-const usuarioContext = createContext();
+const UsuarioContexto = createContext();
 
 // Constante para usar el usuario
 export const usarUsuario = () => {
 
-    const context = useContext(usuarioContext);
+    const context = useContext(UsuarioContexto);
 
     if (!context) throw new Error("usarUsuario debe ser utilizado dentro de un usuarioProvider");
 
@@ -68,8 +68,9 @@ export const UsuarioProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const checkLogin = async () => {
+    async function checkLogin() {
       const cookies = Cookies.get();
+
       if (!cookies.token) {
         setIsAuthenticated(false);
         setLoading(false);
@@ -77,13 +78,15 @@ export const UsuarioProvider = ({ children }) => {
       }
 
       try {
-        const res = await verificarTokenRequest(cookies.token);
+        const res = await verifyTokenRequest(cookies.token);
         console.log(res);
         if (!res.data) return setIsAuthenticated(false);
         setIsAuthenticated(true);
         setUser(res.data);
         setLoading(false);
+        
       } catch (error) {
+        console.log(error);
         setIsAuthenticated(false);
         setLoading(false);
       }
@@ -93,7 +96,7 @@ export const UsuarioProvider = ({ children }) => {
 
   return (
     
-    <usuarioContext.Provider
+    <UsuarioContexto.Provider
       value={{
         usuario,
         SignInUp,
@@ -105,11 +108,11 @@ export const UsuarioProvider = ({ children }) => {
       }}
     >
       {children}
-    </usuarioContext.Provider>
+    </UsuarioContexto.Provider>
 
   );
 
 };
 
 // Se exporta el contexto de usuario
-export default usuarioContext;
+export default UsuarioContexto;

@@ -20,18 +20,18 @@ import { validacionSchema } from "../Middlewares/validador.middleware.js";
 import { crearArticuloSchema } from "../Esquemas/articulo.schema.js";
 
 // Constante del router
-const router = Router()
+const router = Router();
 
 // Ruta de altas //
-router.post("/altaArt", usuario, validacionSchema(crearArticuloSchema), altaArt);
+router.post("/articulos", usuario, validacionSchema(crearArticuloSchema), altaArt);
 // Ruta de bajas //
-router.delete("/bajaArt/:id", usuario, bajaArt);
-// Ruta de cambios //
-router.put("/modArt/:id", usuario, modArt);
+router.delete("/articulos/:id", usuario, bajaArt);
 // Ruta de consultas //
-router.get("/consulsArts", usuario, consulsArts);
+router.get("/articulos", usuario, consulsArts);
+// Ruta de cambios //
+router.put("/articulos/:id", usuario, modArt);
 // Ruta de consulta individual //
-router.get("/consulArt/:id", usuario, consulArt);
+router.get("/articulos/:id", usuario, consulArt);
 
 // Se exporta el router con las rutas
 export default router;

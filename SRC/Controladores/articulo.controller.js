@@ -6,7 +6,6 @@ export const consulsArts = async (req, res) => {
 
     try {
 
-        // Busca el articulo
         const articulos = await articulo.find({ usuario: req.usuario.id }).populate("usuario");
         res.json(articulos);
 
@@ -54,7 +53,7 @@ export const bajaArt = async (req, res) => {
     try {
 
         // Constante para buscar el articulo y borrarlo
-        const borrarArt = await Task.findByIdAndDelete(req.params.id);
+        const borrarArt = await articulo.findByIdAndDelete(req.params.id);
 
         // Si no se encuentra el articulo manda un mensaje de error
         if (!borrarArt) return res.status(404).json({ message: "Articulo no encontrado." });
@@ -76,13 +75,13 @@ export const modArt = async (req, res) => {
     try {
 
         // Constante para actualizar el articulo
-        const { nombre_articulo, codigo_barras_art, descripcion_articulo } = req.body;
+        const { nombre_articulo, codigo_barras_art, descripcion_articulo, date } = req.body;
 
         // Busca y actualiza el articulo
-        const artiMod = await Task.findOneAndUpdate(
+        const artiMod = await articulo.findOneAndUpdate(
 
             { _id: req.params.id },
-            { nombre_articulo, codigo_barras_art, descripcion_articulo },
+            { nombre_articulo, codigo_barras_art, descripcion_articulo, date },
             { new: true }
 
         );

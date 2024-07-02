@@ -1,18 +1,21 @@
 // Se importan librerias de react, dayjs, componentes y contexto de articulo
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { Button, Card, Input, Label } from "../Componentes/UI";
 import { usarArticulo } from "../Contexto/articuloContexto";
 import { Textarea } from "../Componentes/UI/Textarea";
 import { useForm } from "react-hook-form";
+
 dayjs.extend(utc);
 
 // Formato de articulos
 export function ArticulosForm() {
 
   const { altaArt, consulArt, modArt } = usarArticulo();
+
+  //const navigate = useNavigate();
 
   const params = useParams();
 
@@ -39,8 +42,10 @@ export function ArticulosForm() {
         });
       }
 
+    //navigate("/ArticulosPage");
     } catch (error) {
       console.log(error);
+      // window.location.href = "/";
     }
   };
 
@@ -58,7 +63,9 @@ export function ArticulosForm() {
         setValue("completed", articulo.completed);
       }
     };
+
     loadArt();
+
   }, []);
 
   return (
@@ -79,25 +86,30 @@ export function ArticulosForm() {
 
         <Label htmlFor="codigo_barras_art"> Código de barras </Label>
         <Textarea
+          type="text"
           name="codigo_barras_art"
           id="codigo_barras_art"
           rows="3"
-          placeholder="codigo_barras_art"
+          placeholder="codigo de barras de articulo"
           {...register("codigo_barras_art")}
         ></Textarea>
+        {errors.codigo_barras_art && (
+          <p className="text-red-500 text-xs italic"> Por favor escribe un codigo de barras </p>
+        )}
 
         <Label htmlFor="descripcion_articulo"> Descripción </Label>
         <Textarea
+          type="text"
           name="descripcion_articulo"
           id="descripcion_articulo"
           rows="3"
-          placeholder="descripcion"
+          placeholder="descripción"
           {...register("descripcion_articulo")}
         ></Textarea>
 
-        <Label htmlFor="date">Date</Label>
+        <Label htmlFor="date"> Fecha </Label>
         <Input type="date" name="date" {...register("date")} />
-        <Button>Save</Button>
+        <Button> Guardar </Button>
       </form>
     </Card>
 

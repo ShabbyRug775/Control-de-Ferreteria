@@ -6,17 +6,17 @@ import {
   altaArtRequest,
   bajaArtRequest,
   consulsArtsRequest,
-  modArtRequest,
-  consulArtRequest
+  consulArtRequest,
+  modArtRequest
   
 } from "../Api/articulo";
 
 // Se crea un contexto de react
-const articuloContext = createContext();
+const ArticuloContexto = createContext();
 
 export const usarArticulo = () => {
 
-  const context = useContext(articuloContext);
+  const context = useContext(ArticuloContexto);
 
   if (!context) throw new Error("usarArticulo debe ser utilizado dentro de un articuloProvider");
 
@@ -26,7 +26,7 @@ export const usarArticulo = () => {
 
 export function ArticuloProvider({ children }) {
   
-  const [articulo, setArt] = useState([]);
+  const [articulos, setArt] = useState([]);
 
   // Consultas de articulos
   const consulsArts = async () => {
@@ -38,7 +38,7 @@ export function ArticuloProvider({ children }) {
   const bajaArt = async (id) => {
     try {
       const res = await bajaArtRequest(id);
-      if (res.status === 204) setArt(articulo.filter((articulo) => articulo._id !== id));
+      if (res.status === 204) setArt(articulos.filter((articulo) => articulo._id !== id));
     } catch (error) {
       console.log(error);
     }
@@ -75,9 +75,9 @@ export function ArticuloProvider({ children }) {
 
   return (
 
-    <articuloContext.Provider
+    <ArticuloContexto.Provider
       value={{
-        articulo,
+        articulos,
         consulsArts,
         bajaArt,
         altaArt,
@@ -86,7 +86,7 @@ export function ArticuloProvider({ children }) {
       }}
     >
       {children}
-    </articuloContext.Provider>
+    </ArticuloContexto.Provider>
 
   );
 }
