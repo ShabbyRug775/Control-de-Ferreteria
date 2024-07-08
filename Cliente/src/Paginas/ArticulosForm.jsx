@@ -15,7 +15,7 @@ export function ArticulosForm() {
 
   const { altaArt, consulArt, modArt } = usarArticulo();
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const params = useParams();
 
@@ -42,7 +42,11 @@ export function ArticulosForm() {
         });
       }
 
-    //navigate("/ArticulosPage");
+    // Verificar que ningún campo está vacío
+    if (data.nombre_articulo && data.codigo_barras_art && data.descripcion_articulo && data.date) {
+      navigate("/articulos");
+    }
+
     } catch (error) {
       console.log(error);
       // window.location.href = "/";

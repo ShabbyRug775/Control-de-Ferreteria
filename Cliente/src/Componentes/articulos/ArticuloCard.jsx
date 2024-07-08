@@ -19,7 +19,7 @@ export function ArticuloCard({ articulo }) {
       {/* format date */}
       <p>
         {articulo.date &&
-          new Date(articulo.date).toLocaleDateString("en-US", {
+          new Date(articulo.date).toLocaleDateString("es-MX", {
             weekday: "long",
             year: "numeric",
             month: "long",
