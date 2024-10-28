@@ -6,32 +6,32 @@ import {
 
     altaArt,
     bajaArt,
-    actuArt,
-    consulArts,
-    consulArtInd
+    modArt,
+    consulsArts,
+    consulArt
     
 
 } from "../Controladores/articulo.controller.js";
 
-import { auth } from "../Middlewares/usuario.middleware.js";
+import { usuario } from "../Middlewares/usuario.middleware.js";
 // Se importa el validador de esquema
 import { validacionSchema } from "../Middlewares/validador.middleware.js";
 // Se importa el esquema de iniciar sesion y registro de usuarios
 import { crearArticuloSchema } from "../Esquemas/articulo.schema.js";
 
 // Constante del router
-const router = Router()
+const router = Router();
 
 // Ruta de altas //
-router.post("/Altas", auth, validacionSchema(crearArticuloSchema), altaArt);
+router.post("/articulos", usuario, validacionSchema(crearArticuloSchema), altaArt);
 // Ruta de bajas //
-router.delete("/Bajas/:id", auth, bajaArt);
-// Ruta de cambios //
-router.put("/Cambios/:id", auth, actuArt);
+router.delete("/articulos/:id", usuario, bajaArt);
 // Ruta de consultas //
-router.get("/Consultas", auth, consulArts);
+router.get("/articulos", usuario, consulsArts);
+// Ruta de cambios //
+router.put("/articulos/:id", usuario, modArt);
 // Ruta de consulta individual //
-router.get("/ConsultaInd/:id", auth, consulArtInd);
+router.get("/articulos/:id", usuario, consulArt);
 
 // Se exporta el router con las rutas
 export default router;

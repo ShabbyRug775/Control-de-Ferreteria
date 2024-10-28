@@ -1,7 +1,7 @@
 // Se importan las librerias
 import usuario from "../Modelos/usuario.model.js";
-import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 import { TOKEN_SECRET } from "../Configuracion/configuracion.js";
 import { createAccessToken } from "../Libs/jwt.js";
 
@@ -46,7 +46,6 @@ export const LogIn = async (req, res) => {
         // Se manda el token para revisión
         res.cookie("token", token, {
 
-            httpOnly: process.env.NODE_ENV !== "development",
             secure: true,
             sameSite: "none"
 
@@ -76,7 +75,7 @@ export const SignInUp = async (req, res) => {
     try {
 
         // Constante para guardar datos del usuario
-        const { nombre_usuario, correo, telefono, password } = req.body;
+        const { nombre_usuario, correo, password } = req.body;
 
         // Se busca si hay un usuario con un correo ya usado
         const usarioEncontrado = await usuario.findOne({ correo });
@@ -97,7 +96,6 @@ export const SignInUp = async (req, res) => {
 
             nombre_usuario,
             correo,
-            telefono,
             password: passwordHash,
 
         });
@@ -115,7 +113,6 @@ export const SignInUp = async (req, res) => {
         // Se manda el token para revisión
         res.cookie("token", token, {
 
-            httpOnly: process.env.NODE_ENV !== "development",
             secure: true,
             sameSite: "none"
 
@@ -127,7 +124,6 @@ export const SignInUp = async (req, res) => {
             id: usuarioGuardado._id,
             nombre_usuario: usuarioGuardado.nombre_usuario,
             correo: usuarioGuardado.correo,
-            telefono: usuarioGuardado.telefono
 
         });
 

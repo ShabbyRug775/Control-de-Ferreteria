@@ -24,7 +24,7 @@ router.post("/LogIn", validacionSchema(LogInSchema), LogIn);
 // Ruta para Sign-In-Up //
 router.post("/SignInUp", validacionSchema(SignInUpSchema), SignInUp);
 // Ruta para verificar el token //
-router.get("/verificar", verifyToken);
+router.get("/verifyToken", verifyToken);
 // Ruta para Log-Out //
 router.post("/LogOut", verifyToken, LogOut);
 
